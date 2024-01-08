@@ -119,12 +119,12 @@ def openapp(app_index):#function to open app
 
 if __name__ == "__main__":
         while True:
-            query = takeCommand().lower()
+            query = takeCommand().lower()# taking voice input
             if 'hello' in query:
                 wishme()
                 while True:
                     query = takeCommand().lower()
-                    if 'wikipedia' in query:
+                    if 'wikipedia' in query:#searching wikipedia
                         speak('Searching Wikepedia...')
                         query = query.replace("wikipedia", "")
                         print(query)
@@ -132,42 +132,42 @@ if __name__ == "__main__":
                         speak("According to wikipedia")
                         print(results)
                         speak(results)
-                    elif 'write' in query:
+                    elif 'write' in query:#writing document with ai
                         ai(prompt = query)
-                    elif 'the time' in query:
+                    elif 'the time' in query:#gives the current time
                         speak("the time is")
                         time = datetime.datetime.now().strftime("%H:%M:%S")
                         speak(time)
-                    elif 'open website' in query:
+                    elif 'open website' in query:#opens website
                         speak("just say the website which you want to open")
                         website = takeCommand().lower()
                         mw = website.replace(" ", "")
                         speak("Searching...")
                         webbrowser.open("https://www."+mw+".com")
-                    elif 'play music from web' in query:
+                    elif 'play music from web' in query:#plays online music
                         speak("Playing music from youtube music sir")
                         music_index = random.randint(0, len(data.music_links)-1)
                         speak(f"Playing {data.music_links[music_index][0]} from youtube music")
                         webbrowser.open(data.music_links[music_index][1])
-                    elif query == 'play music' in query:
+                    elif query == 'play music' in query:#plays offline music from a saved directory
                         music_dir = 'D:\Music'
                         songs = os.listdir(music_dir)
                         print(songs)
                         speak("playing music sir")
                         os.startfile(os.path.join(music_dir, songs[random.randint(0, len(songs)-1)]))
-                    elif 'open code' in query:
+                    elif 'open code' in query:# opens vs code
                         openapp(0)
-                    elif 'open vs code' in query:
+                    elif 'open vs code' in query:# opens vs code
                         openapp(0)
-                    elif 'open any desk' in query:
+                    elif 'open any desk' in query:# opens anydesk
                         openapp(1)
-                    elif 'open word' in query:
+                    elif 'open word' in query:#opens microsoft word
                         openapp(2)
-                    elif 'open excel' in query:
+                    elif 'open excel' in query:#opens microsoft excel
                         openapp(3)
-                    elif 'open powerpoint' in query:
+                    elif 'open powerpoint' in query:#opens microsoft powerpoint
                         openapp(4)
-                    elif 'my location' in query:
+                    elif 'my location' in query:#gives the current location info
                         print(location)
                         print("Current Location:")
                         speak("Sir, Your Current Location is")
@@ -181,23 +181,23 @@ if __name__ == "__main__":
                         speak(f"State {location.state}")
                         print("Country:", location.country+"DIA")
                         speak(f"Country {location.country}+DIA")
-                    elif 'longtitude' in query:
+                    elif 'longtitude' in query:#gives longtitude info
                         print("Longitude:", location.latlng[1])
                         speak(f"Sir your Longitude is {location.latlng[1]}")
                         print("Latitude:", location.latlng[0])
                         speak(f"and Latitude {location.latlng[0]}")
-                    elif 'latitude' in query:
+                    elif 'latitude' in query:#gives latitude info
                         print("Latitude:", location.latlng[0])
                         speak(f"Sir your Latitude is {location.latlng[0]}")
                         print("Longitude:", location.latlng[1])
                         speak(f"and Longitude {location.latlng[1]}")
-                    elif "today's weather" in query:
+                    elif "today's weather" in query:# gives todays weather
                         weather = Weathertest.jsonData['days'][0]
                         detail_weather(weather=weather)
-                    elif "tomorrow's weather" in query:
+                    elif "tomorrow's weather" in query:#gives tommorows weather
                         weather = Weathertest.jsonData['days'][1]
                         detail_weather(weather=weather)
-                    elif 'temperature' in query:
+                    elif 'temperature' in query:#gives temp info
                         weather = Weathertest.jsonData['days'][0]
                         print("Temperature:", weather['temp'])
                         speak(f"Sir, the temperature is {weather['temp']}")
@@ -207,7 +207,7 @@ if __name__ == "__main__":
                         speak(f"min temperature {weather['tempmin']}")
                         print(f"Feelslike {weather['feelslike']}")
                         speak(f"and Feelslike {weather['feelslike']}")
-                    elif 'send email' in query:
+                    elif 'send email' in query:#sends email
                         try:
                             speak("To whom should I sent this mail")
                             to = takeCommand().lower()
@@ -236,20 +236,22 @@ if __name__ == "__main__":
                             print(e)
                             speak("Sorry Sir, I am not able to send this email")
                     elif query == 'lights on' or query == 'turn on lights' or query == 'turn on the lights' or query == 'turn on the light' or query == 'turn on the lights':
+                        #turning light on
                         # sender.py
                         import reciver
                         reciver.process_data("97")
                     elif query == 'lights off' or query == 'turn off lights' or query == 'turn off the lights' or query == 'turn off the light' or query == 'turn off the lights':
+                        #turning light off
                         # sender.py
                         import reciver
                         reciver.process_data("1")
-                    elif 'current affairs' in query:
+                    elif 'current affairs' in query:# gives the current affair
                         import testnewstwo
-                    elif 'quit' in query:
+                    elif 'quit' in query:#quits the programme
                         exit()
-                    elif query == "Invalid Query":
+                    elif query == "Invalid Query":#invalid query
                         speak("Sorry Sir, I didn't get you")
-                    else:
+                    else:# chats with ai
                         if query != "Invalid Query":
                             print(query)
                             ans=chat(prompt=query)
