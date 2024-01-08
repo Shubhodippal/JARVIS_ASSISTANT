@@ -1,3 +1,4 @@
+import api
 import speech_recognition as sr
 import pyttsx3
 import datetime
@@ -7,7 +8,6 @@ import os
 import random
 import smtplib
 import openai
-import api
 import locationtest
 import data
 import Weathertest
