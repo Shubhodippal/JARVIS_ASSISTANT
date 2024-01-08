@@ -1,4 +1,3 @@
-import api
 import speech_recognition as sr
 import pyttsx3
 import datetime
@@ -8,6 +7,7 @@ import os
 import random
 import smtplib
 import openai
+import api
 import locationtest
 import data
 import Weathertest
@@ -23,7 +23,7 @@ def speak(audio):# function to convert text to speech
     engine.say(audio)
     engine.runAndWait()
 
-def wishme():
+def wishme():# function to wish the user
     hour=int(datetime.datetime.now().hour)
     if hour>=0 and hour<12:
         speak("Good Morning")
@@ -34,7 +34,7 @@ def wishme():
 
     speak("Hi I am Jarvis.\n How can I help you")
 
-def takeCommand():
+def takeCommand():# function to convert speech to text
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
@@ -49,13 +49,13 @@ def takeCommand():
         print(f"User said: {query}\n")
 
     except Exception as e:
-        #        print(e)
+        #print(e)
         print("Say that again please")
         query = "Invalid Query"
         #return "None"
     return query
 
-def ai(prompt):
+def ai(prompt):# fuction to write document using ai
     #key = api.cohereapikey
     import cohere
     co = cohere.Client(api.cohereapikey)
@@ -82,7 +82,7 @@ def ai(prompt):
         print("Error occurred!!!")
         speak("Sorry sir, I am not able to answer your question at the moment")
     
-def chat(prompt):
+def chat(prompt):#function to chat with ai 
     import cohere
     co = cohere.Client(api.cohereapikey)
 
@@ -94,7 +94,7 @@ def chat(prompt):
     answer = response.text
     return answer
 
-def detail_weather(weather):
+def detail_weather(weather):#function to give weather info
     print(f"tempmax {weather['tempmax']}")
     speak(f"tempmax {weather['tempmax']}")
     print(f"tempmin {weather['tempmin']}")
@@ -112,7 +112,7 @@ def detail_weather(weather):
     print(f"description {weather['description']}")
     speak(f"description {weather['description']}")
 
-def openapp(app_index):
+def openapp(app_index):#function to open app
     speak(f"Opening {data.apps[app_index][0]} sir")
     os.startfile(data.apps[app_index][1])
 
