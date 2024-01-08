@@ -14,12 +14,12 @@ import Weathertest
 import namematch
 location = locationtest.get_current_location()
 
-engine = pyttsx3.init('sapi5')
+engine = pyttsx3.init('sapi5') # initializing the sapi5 voice engine
 voices = engine.getProperty('voices')
 print(voices[1].id)
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[1].id) # selecting the voice 
 
-def speak(audio):
+def speak(audio):# function to convert text to speech
     engine.say(audio)
     engine.runAndWait()
 
